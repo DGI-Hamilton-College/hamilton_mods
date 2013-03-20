@@ -381,6 +381,17 @@ function hamilton_mods_fix_relationships() {
 
   foreach ($results as $result) {
     $object = islandora_object_load($result['object']['value']);
-    dd($object->relationships->get());
+    $rels = $object->relationships->get();
+
+    foreach ($rels as $relation) {
+      if ($relation['object']['value'] == 'hamilton:shahid') {
+        $object->relationships->remove('info:fedora/fedora-system:def/relations-external#', 'isMemberOfCollection', 'hamilton:shahid');
+        dd('Remove shahid relationship from ' . $object->id);
+      }
+      elseif ($relation['object']['value'] == 'islandora:audio_collection') {
+        $object->relationships->remove('info:fedora/fedora-system:def/relations-external#', 'isMemberOfCollection', 'hamilton:shahid');
+        dd('Removed audio relationship from ' . $object->id);
+      }
+    }
   }
 }
