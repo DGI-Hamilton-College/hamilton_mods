@@ -1,0 +1,7 @@
+name = Hamilton MODS migration
+description = Applying MODS for Hamilton's objects. 
+dependencies[] = islandora
+package = Hamilton
+version = 7.x-dev
+core = 7.x
+
